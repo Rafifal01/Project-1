@@ -15,16 +15,18 @@ if url :
     driver.get(url)
 
     data = []
-    for i in range(0, 3):
+    for i in range(0, 10):
         soup = BeautifulSoup(driver.page_source, "html.parser")
         containers = soup.findAll('article', attrs = {'class':'css-ccpe8t'})
 
         for container in containers:
             try:
+                produk = container.find('p', attrs = {'data-unify' : 'Typography'}).text
+                nama = container.find('span', attrs = {'class' : 'name'}).text
                 waktu = container.find('div', attrs={'class': 'css-1w6pe1p'}).text
                 review = container.find('span', attrs={'data-testid': 'lblItemUlasan'}).text
                 bintang = container.find('div', attrs={'data-testid': 'icnStarRating'})['aria-label']
-                data.append((waktu, review, bintang))
+                data.append((produk, nama, waktu, review, bintang))
                 
             except AttributeError:
                 continue
@@ -34,5 +36,5 @@ if url :
         time.sleep(3)
 
     print(data)
-    df = pd.DataFrame(data, columns=[["Waktu","Review","Rating"]])
+    df = pd.DataFrame(data, columns=[["Produk","Nama","Waktu","Review","Rating"]])
     df.to_csv("Tokopedia.csv", index=False)
