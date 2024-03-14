@@ -13,9 +13,9 @@ if url :
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
     driver.get(url)
-
+    
     data = []
-    for i in range(0, 10):
+    for i in range(0, 30):
         soup = BeautifulSoup(driver.page_source, "html.parser")
         containers = soup.findAll('article', attrs = {'class':'css-ccpe8t'})
 
@@ -34,7 +34,8 @@ if url :
         time.sleep(2)
         driver.find_element(By.CSS_SELECTOR, "button[aria-label^='Laman berikutnya']").click()
         time.sleep(3)
-
+        
+        
     print(data)
     df = pd.DataFrame(data, columns=[["Produk","Nama","Waktu","Review","Rating"]])
-    df.to_csv("Tokopedia.csv", index=False)
+    df.to_csv("Tokopedia_JulClothing.csv", index=False)
