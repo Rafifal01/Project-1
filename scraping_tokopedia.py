@@ -15,7 +15,7 @@ if url :
     driver.get(url)
     
     data = []
-    for i in range(0, 30):
+    for i in range(0, 40):
         soup = BeautifulSoup(driver.page_source, "html.parser")
         containers = soup.findAll('article', attrs = {'class':'css-ccpe8t'})
 
@@ -38,4 +38,4 @@ if url :
         
     print(data)
     df = pd.DataFrame(data, columns=[["Produk","Nama","Waktu","Review","Rating"]])
-    df.to_csv("Tokopedia_JulClothing.csv", index=False)
+    df.to_csv("Data Mentah Jul.csv", index=False)
