@@ -1,0 +1,22 @@
+# Scraping
+selenium
+beautifulsoup4
+
+# Data & plotting
+pandas
+numpy
+matplotlib
+seaborn
+
+# Indonesian NLP
+Sastrawi
+translate
+
+# English NLP & sentiment
+nltk
+textblob
+wordcloud
+
+# Imported by the notebooks (no model is actually trained)
+scikit-learn
+imbalanced-learn
